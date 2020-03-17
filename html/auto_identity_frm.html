@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+           margin:0px;
+           position: relative;
+        }
+        #takePhoto {
+          background-color: #FFFFFF;
+          border: outset;
+          width: 60px;
+          height: 60px;
+          border-radius: 100%;
+          position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+        <div id="box"></div>
+        <button id="takePhoto"></button>
+
+
+</body>
+<script type="text/javascript" src="../script/jquery.min.js"></script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        $("#takePhoto").css("left",api.winWidth/2-30)
+        $("#takePhoto").css("top",api.winHeight-70)
+        $("#box").css("position","absolute")
+        $("#box").css("width",api.winWidth*3/5)
+        $("#box").css("height",api.winWidth*3/5)
+        $("#box").css("border","solid")
+        $("#box").css("opacity",0.5)
+        $("#box").css("border-left-width",api.winWidth*1/5)
+        $("#box").css("border-right-width",api.winWidth*1/5)
+        $("#box").css("border-top-width",api.winWidth*1/5)
+        $("#box").css("border-bottom-width",api.winHeight-api.winWidth*4/5)
+
+        $("#takePhoto").click(function(){
+          //在名为winName的window中执行jsfun脚本
+          var jsfun = 'test();';
+          api.execScript({
+              name: 'auto_identity',
+              script: jsfun
+          });
+        })
+
+    }
+
+
+
+</script>
+
+
+
+
+</html>

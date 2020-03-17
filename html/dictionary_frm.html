@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <style>
+        .empty{ text-align: center; padding: 120px 0; }
+    </style>
+</head>
+<body>
+</body>
+</html>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/jquery.min.js"></script>
+<script type="text/javascript" src="../script/script/ipaddress.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        // $api.dom('.empty').innerHTML = api.pageParam.name+'页';
+
+        api.showProgress({
+          title: '加载中...',
+          text: '先喝杯茶...',
+          modal: false
+        });
+
+        $.ajax({
+            url: ipAddress+"spec/findAll1",
+            type: 'get',
+            dataType: 'json',
+            // headers:{"Authorization":$api.getStorage("Authorization")},
+            success: function(result) {
+              var result_data = result.data;
+              var data = new Array();
+              for(var i=0;i<result_data.length;i++){
+                if (result_data[i].specImgs!=null) {
+                  var col = {
+                    uid : result_data[i].id,
+                    imgPath: vr_path+encodeURIComponent(result_data[i].specImgs.split(",")[0].split("/")[1]),
+                    title: result_data[i].specNameCh,
+                    subTitle: result_data[i].specNameEn,
+                    icon: ''
+                  }
+                }else {
+                  var col = {
+                    uid : result_data[i].id,
+                    imgPath: "",
+                    title: result_data[i].specNameCh,
+                    subTitle: result_data[i].specNameEn,
+                    icon: ''
+                  }
+                }
+                data[i]=col;
+              }
+
+              var UIListBook = api.require('UIListBook');
+              UIListBook.open({
+                  rect: {
+                      x: 0,
+                      y: 0,
+                      w: api.pageParam.w,
+                      h: api.pageParam.h
+                  },
+                  data:  data,
+                  styles: {
+                      borderColor: '#696969',
+                      item: {
+                          bgColor: '#ffffff',
+                          activeBgColor: '#F5F5F5',
+                          imgWidth: 80,
+                          imgHeight: 80,
+                          imgCorner: 4,
+                          placeholderImg: '',
+                          titleSize: 16,
+                          titleColor: '#000',
+                          subTitleSize: 14.0,
+                          subTitleColor: '#000',
+                          remarkColor: '#000',
+                          remarkSize: 16,
+                          remarkIconWidth: 30,
+                      }
+                  },
+                  fixedOn: api.frameName
+              }, function(ret, err) {
+                api.hideProgress();
+                  if (ret.eventType == "clickContent") {
+                      UIListBook.getDataByIndex({
+                          index: ret.index
+                      }, function(ret, err) {
+                          if (ret) {
+                            // console.log(JSON.stringify(ret));
+                            api.openWin({
+                                name: 'detail',
+                                url: './detail_win.html',
+                                pageParam: {
+                                    name: ret.data.content.nameValuePairs.title,
+                                    id: ret.data.content.nameValuePairs.uid
+                               }
+                            });
+                          } else {
+                              alert(JSON.stringify(err));
+                          }
+                      });
+                  } else {
+                    // api.hideProgress();
+                      // alert(JSON.stringify(2));
+                      api.hideProgress();
+                  }
+              });
+              UIListBook.show();
+            },
+            error : function(){
+              api.hideProgress();
+              alert("获取数据失败！")
+            }
+        });
+
+
+
+  };
+</script>

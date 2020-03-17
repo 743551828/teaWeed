@@ -1,0 +1,475 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/aui.css" />
+    <style>
+      .center{
+        text-align: center;
+      }
+      .title{
+        text-align: right;
+      }
+      span{
+        font-size: 20px;
+        color: #666
+      }
+      img{
+        padding: 5px;
+        width: 100%
+      }
+      #specDesc{
+        padding: 2px;
+        overflow-x:scroll;
+      }
+      .centerItem {
+            width: 856px;
+            height: 640px;
+            background-color: #003077;
+            margin: 110px auto 0 auto;
+        }
+    </style>
+    <style>
+        .empty{ text-align: center; padding: 120px 0; }
+    </style>
+</head>
+<body>
+  <div class="aui-content aui-margin-b-15">
+    <ul class="aui-list aui-list-in">
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">中文名称 : </div>
+                <div class="aui-list-item-right" id="specNameCh">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">英文名称 : </div>
+                <div class="aui-list-item-right" id="specNameEn">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">拉丁名称 : </div>
+                <div class="aui-list-item-right" id="specNameLd">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">种别名 : </div>
+                <div class="aui-list-item-right" id="specNameOth">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">植被类型 : </div>
+                <div class="aui-list-item-right" id="vegetation_type">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">草本类型 : </div>
+                <div class="aui-list-item-right" id="herbaceous_type">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">藤本类型 : </div>
+                <div class="aui-list-item-right" id="vine_type">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">灌木类型 : </div>
+                <div class="aui-list-item-right" id="shrub_type">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">植株高度 : </div>
+                <div class="aui-list-item-right" id="plant_height">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">茎分支 : </div>
+                <div class="aui-list-item-right" id="stem_branches">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">茎形态 : </div>
+                <div class="aui-list-item-right" id="stems_type">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">花期 : </div>
+                <div class="aui-list-item-right" id="flowering_phase">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">果期 : </div>
+                <div class="aui-list-item-right" id="fruit_phase">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">叶形态 : </div>
+                <div class="aui-list-item-right" id="leaf_type">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">花序 : </div>
+                <div class="aui-list-item-right" id="inflorescence">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">花形态 : </div>
+                <div class="aui-list-item-right" id="flower_type">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">果形态 : </div>
+                <div class="aui-list-item-right" id="fruit_type">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">被刺 : </div>
+                <div class="aui-list-item-right" id="stabbed">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">被毛 : </div>
+                <div class="aui-list-item-right" id="clothing_hair">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">危害性 : </div>
+                <div class="aui-list-item-right" id="perniciousness">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">防治难度 : </div>
+                <div class="aui-list-item-right" id="prevention_difficultly">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">防治建议 : </div>
+                <div class="aui-list-item-right" id="prevention_advise">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">化学防治 : </div>
+                <div class="aui-list-item-right" id="chemical_prevention">无</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">农业措施 : </div>
+                <div class="aui-list-item-right" id="agricultural_practice">无</div>
+            </div>
+        </li>
+        <!-- <li class="aui-list-item aui-list-item-arrow">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title">种描述 : </div>
+                        <div class="aui-list-item-right"></div>
+                    </div>
+                    <div class="aui-list-item-text aui-ellipsis-2" id="specDesc">
+
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="center"><img id = "specImgs"></li> -->
+    </ul>
+    <ul class="aui-list aui-media-list">
+        <li class="aui-list-item">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title">种描述 : </div>
+                        <!-- <div class="aui-list-item-right">08:00</div> -->
+                    </div>
+                    <div class="aui-list-item-text aui-ellipsis-2" id="specDesc">
+                    </div>
+                </div>
+            </div>
+        </li>
+        <!-- 中国地图展示，为 ECharts 准备一个具备大小（宽高）的 DOM  -->
+        <li></li>
+
+        <li class="center"><img id = "specImgs1"></li>
+        <li class="center"><img id = "specImgs2"></li>
+        <li class="center"><img id = "specImgs3"></li>
+    </ul>
+  </div>
+  <div id="container" style="height: 80px;width:120px;background:white;margin:20px 0 0;"></div>
+</body>
+</html>
+<script type="text/javascript" src="../script/jquery.min.js"></script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/script/ipaddress.js"></script>
+<script src="../script/echarts.js"></script>
+<script src="../script/china.js"></script>
+
+<script type="text/javascript">
+    // 全国省份列表
+    var dataMap = [{ name: '北京' }, { name: '天津' }, { name: '上海' }, { name: '重庆' }, { name: '河北' }, { name: '河南' }, { name: '云南' }, { name: '辽宁' }, { name: '黑龙江' }, { name: '湖南' }, { name: '安徽' }, { name: '山东' },
+    { name: '新疆' }, { name: '江苏' }, { name: '浙江' }, { name: '江西' }, { name: '湖北' }, { name: '广西' }, { name: '甘肃' }, { name: '山西' }, { name: '内蒙古' }, { name: '陕西' }, { name: '吉林' }, { name: '福建' }, { name: '贵州' },
+    { name: '广东' }, { name: '青海' }, { name: '西藏' }, { name: '四川' }, { name: '宁夏' }, { name: '海南' }, { name: '台湾' }, { name: '香港' }, { name: '澳门' }]
+    // 需要在页面上直接标记出来的城市
+    var specialMap = ['浙江', '云南', '陕西'];
+    // 对dataMap进行处理，使其可以直接在页面上展示
+    for (var i = 0; i < specialMap.length; i++) {
+        for (var j = 0; j < dataMap.length; j++) {
+            if (specialMap[i] == dataMap[j].name) {
+                dataMap[j].selected = true;
+                break;
+            }
+
+        }
+    }
+    // 绘制图表，准备数据
+    var option = {
+        tooltip: {
+            formatter: function (params) {
+                var info = '<p style="font-size:18px">' + params.name + '</p><p style="font-size:14px">这里可以写一些，想展示在页面上的别的信息</p>'
+                return info;
+            },
+            backgroundColor: "#ff7f50",//提示标签背景颜色
+            textStyle: { color: "#fff" } //提示标签字体颜色
+        },
+        series: [
+            {
+                name: '中国',
+                type: 'map',
+                mapType: 'china',
+                selectedMode: 'multiple',
+                label: {
+                    normal: {
+                        show: true,//显示省份标签
+                        // textStyle:{color:"#c71585"}//省份标签字体颜色
+                    },
+                    emphasis: {
+                        show: true,//对应的鼠标悬浮效果
+                        // textStyle:{color:"#800080"}
+                    }
+                },
+                itemStyle: {
+                    normal: {
+                        borderWidth: .5,//区域边框宽度
+                        // borderColor: '#009fe8',//区域边框颜色
+                        // areaColor:"#ffefd5",//区域颜色
+                    },
+                    emphasis: {
+                        borderWidth: .5,
+                        borderColor: '#4b0082',
+                        areaColor: "#ffdead",
+                    }
+                },
+                data: dataMap
+            }
+        ]
+    };
+    //初始化echarts实例
+    var myChart = echarts.init(document.getElementById('container'));
+    //使用制定的配置项和数据显示图表
+    myChart.setOption(option);
+</script>
+
+
+<script type="text/javascript">
+    apiready = function(){
+      api.showProgress({
+        title: '数据加载中...',
+        text: '先喝杯茶...',
+        modal: false
+      });
+        // $api.dom('.empty').innerHTML = api.pageParam.name+api.pageParam.id;
+        $.ajax({
+            url: ipAddress+"spec/findById",
+            type: 'get',
+            data: {"id":api.pageParam.id},
+            dataType: 'json',
+            // headers:{"Authorization":$api.getStorage("Authorization")},
+            success: function(result) {
+              console.log(JSON.stringify(result));
+              var spec = result.data;
+              if (spec.specNameCh == null || spec.specNameCh == "") {
+                $("#specNameCh").text("无");
+              }else {
+                $("#specNameCh").text(spec.specNameCh);
+              };
+              if (spec.specNameEn == null || spec.specNameEn == "") {
+                $("#specNameEn").text("无");
+              }else {
+                $("#specNameEn").text(spec.specNameEn);
+              };
+              if (spec.specNameLd == null || spec.specNameLd == "") {
+                $("#specNameLd").text("无");
+              }else {
+                $("#specNameLd").text(spec.specNameLd);
+              };
+              if (spec.specNameOth == null || spec.specNameOth == "") {
+                $("#specNameOth").text("无");
+              }else {
+                $("#specNameOth").text(spec.specNameOth);
+              };
+
+              if (spec.vegetation_type == null || spec.vegetation_type == "") {
+                $("#vegetation_type").text("无");
+              }else {
+                $("#vegetation_type").text(spec.vegetation_type);
+              };
+              if (spec.herbaceous_type == null || spec.herbaceous_type == "") {
+                $("#herbaceous_type").text("无");
+              }else {
+                $("#herbaceous_type").text(spec.herbaceous_type);
+              };
+              if (spec.vine_type == null || spec.vine_type == "") {
+                $("#vine_type").text("无");
+              }else {
+                $("#vine_type").text(spec.vine_type);
+              };
+              if (spec.shrub_type == null || spec.shrub_type == "") {
+                $("#shrub_type").text("无");
+              }else {
+                $("#shrub_type").text(spec.shrub_type);
+              };
+              if (spec.plant_height == null || spec.plant_height == "") {
+                $("#plant_height").text("无");
+              }else {
+                $("#plant_height").text(spec.plant_height);
+              };
+              if (spec.stem_branches == null || spec.stem_branches == "") {
+                $("#stem_branches").text("无");
+              }else {
+                $("#stem_branches").text(spec.stem_branches);
+              };
+              if (spec.stems_type == null || spec.stems_type == "") {
+                $("#stems_type").text("无");
+              }else {
+                $("#stems_type").text(spec.stems_type);
+              };
+              if (spec.flowering_phase == null || spec.flowering_phase == "") {
+                $("#flowering_phase").text("无");
+              }else {
+                $("#flowering_phase").text(spec.flowering_phase);
+              };
+              if (spec.fruit_phase == null || spec.fruit_phase == "") {
+                $("#fruit_phase").text("无");
+              }else {
+                $("#fruit_phase").text(spec.fruit_phase);
+              };
+              if (spec.leaf_type == null || spec.leaf_type == "") {
+                $("#leaf_type").text("无");
+              }else {
+                $("#leaf_type").text(spec.leaf_type);
+              };
+              if (spec.inflorescence == null || spec.inflorescence == "") {
+                $("#inflorescence").text("无");
+              }else {
+                $("#inflorescence").text(spec.inflorescence);
+              };
+              if (spec.flower_type == null || spec.flower_type == "") {
+                $("#flower_type").text("无");
+              }else {
+                $("#flower_type").text(spec.flower_type);
+              };
+              if (spec.fruit_type == null || spec.fruit_type == "") {
+                $("#fruit_type").text("无");
+              }else {
+                $("#fruit_type").text(spec.fruit_type);
+              };
+              if (spec.stabbed == null || spec.stabbed == "") {
+                $("#stabbed").text("无");
+              }else {
+                $("#stabbed").text(spec.stabbed);
+              };
+              if (spec.clothing_hair == null || spec.clothing_hair == "") {
+                $("#clothing_hair").text("无");
+              }else {
+                $("#clothing_hair").text(spec.clothing_hair);
+              };
+              if (spec.perniciousness == null || spec.perniciousness == "") {
+                $("#perniciousness").text("无");
+              }else {
+                $("#perniciousness").text(spec.perniciousness);
+              };
+              if (spec.prevention_difficultly == null || spec.prevention_difficultly == "") {
+                $("#prevention_difficultly").text("无");
+              }else {
+                $("#prevention_difficultly").text(spec.prevention_difficultly);
+              };
+              if (spec.prevention_advise == null || spec.prevention_advise == "") {
+                $("#prevention_advise").text("无");
+              }else {
+                $("#prevention_advise").text(spec.prevention_advise);
+              };
+              if (spec.chemical_prevention == null || spec.chemical_prevention == "") {
+                $("#chemical_prevention").text("无");
+              }else {
+                $("#chemical_prevention").text(spec.chemical_prevention);
+              };
+              if (spec.agricultural_practice == null || spec.agricultural_practice == "") {
+                $("#agricultural_practice").text("无");
+              }else {
+                $("#agricultural_practice").text(spec.agricultural_practice);
+              };
+
+              if (spec.specDesc == null || spec.specDesc == "") {
+                $("#specDesc").text("无");
+              }else {
+                $("#specDesc").html(spec.specDesc);
+              };
+              if (spec.specImgs != null) {
+                var img_length = spec.specImgs.split(",").length;
+                if (img_length == 1) {
+                  $("#specImgs1").attr("src",vr_path+encodeURIComponent(spec.specImgs.split(",")[0].split("/")[1]));
+                  $("#specImgs2").attr("display","none");
+                  $("#specImgs3").attr("display","none")
+                }else if (img_length == 2) {
+                  $("#specImgs1").attr("src",vr_path+encodeURIComponent(spec.specImgs.split(",")[0].split("/")[1]));
+                  $("#specImgs2").attr("src",vr_path+encodeURIComponent(spec.specImgs.split(",")[1].split("/")[1]));
+                  $("#specImgs3").attr("display","none")
+                }else if (img_length > 2) {
+                  $("#specImgs1").attr("src",vr_path+encodeURIComponent(spec.specImgs.split(",")[0].split("/")[1]));
+                  $("#specImgs2").attr("src",vr_path+encodeURIComponent(spec.specImgs.split(",")[1].split("/")[1]));
+                  $("#specImgs3").attr("src",vr_path+encodeURIComponent(spec.specImgs.split(",")[2].split("/")[1]));
+                }
+
+              }
+
+            }
+          });
+        api.hideProgress();
+
+
+
+
+
+
+
+
+
+
+    };
+</script>

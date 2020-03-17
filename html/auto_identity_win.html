@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <!-- /*<style>
+        header{ background-color: #FCFCFC; line-height: 42px; height: 42px; position: relative; }
+        header b{ width: 42px; height: 100%; display: inline-block; position: relative; z-index: 1; background: url() no-repeat center; background-size: 70% auto;  }
+        header b.ic-back{ background-image: url(../image/ic-back.png); }
+        header b.ic-check{ background-image: url(../image/ic-check.png); float: right; }
+        header .title{ position: absolute; left: 0; bottom: 0; right: 0;  text-align: center; font-size: 18px;  }
+    </style>*/ -->
+</head>
+<body>
+    <div id="wrap" class="flex-wrap flex-vertical" >
+        <div id="main" class="flex-con" >
+
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    var FNPhotograph = null;
+    apiready = function(){
+
+      FNPhotograph = api.require('FNPhotograph');
+      FNPhotograph.openCameraView({
+        rect: {
+           x: 0,
+           y: 0,
+           w: api.winWidth,
+           h: api.winHeight
+        },
+        orientation: 'portrait',
+        fixedOn: api.frameName,
+        fixed: true
+      }, function(ret){
+        //连续自动对焦
+           FNPhotograph.setFocusMode({
+             focusMode: 'continue'
+           });
+           FNPhotograph.setFocusRegion({
+             region: {
+                 x: api.winWidth*1/2,
+                 y: api.winWidth*1/2,
+                 w: api.winWidth*3/5,
+                 h: api.winWidth*3/5
+             }
+           });
+          api.openFrame({
+            name: 'auto_identity',
+            url: 'auto_identity_frm.html',
+            rect: {
+                x: 0,
+                y: 0,
+                w: 'auto',
+                y: 'auto'
+            },
+            pageParam: {
+              type:"TeaWeed"
+            }
+          })
+      });
+    };
+    function test(){
+      FNPhotograph.takePhoto({
+          quality: 'medium',
+          path: 'fs://FNPhotograph/01.png',
+          album: true
+      }, function(ret){
+        api.openFrame({
+          name: 'identity_detail_frm0',
+          url: 'identity_detail_frm0.html',
+          rect: {
+              x: 0,
+              y: 0,
+              w: 'auto',
+              y: 'auto'
+          },
+          pageParam: {
+            imagePath:ret.imagePath
+          }
+        })
+      });
+    }
+</script>
