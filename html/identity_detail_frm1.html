@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <link href="../css/bootstrap.css" rel="stylesheet"> -->
+    <style>
+        body{
+           margin:0px;
+           position: relative;
+        }
+        #content{
+          position: absolute;
+          left: 20%;
+
+        }
+    </style>
+</head>
+
+<body>
+        <div id="box"></div>
+        <p id="content" style="font-size:30px;color:white">
+        </p>
+
+</body>
+<script type="text/javascript" src="../script/jquery.min.js"></script>
+<!-- <script type="text/javascript" src="../script/bootstrap.js"></script> -->
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript">
+    apiready = function(){
+        $("#box").css("position","absolute")
+        $("#box").css("width",api.winWidth*3/5)
+        $("#box").css("height",api.winWidth*3/5)
+        $("#box").css("border","solid")
+        $("#box").css("opacity",0.5)
+        $("#box").css("border-left-width",api.winWidth*1/5)
+        $("#box").css("border-right-width",api.winWidth*1/5)
+        $("#box").css("border-top-width",api.winWidth*1/5)
+        $("#box").css("border-bottom-width",api.winHeight-api.winWidth*4/5)
+
+
+
+
+
+
+        api.showProgress({
+          title: '检测中...',
+          text: '先喝杯茶...',
+          modal: false
+        });
+        api.ajax({
+          url: 'http://47.111.140.91:8081/test/tea_weed',
+          method: 'post',
+          headers: {"Authorization":$api.getStorage("Authorization")},
+          data: {
+              files: {
+                  file: api.pageParam.imagePath
+              }
+          }
+        }, function(ret, err) {
+          api.hideProgress();
+          if (ret.code == 200) {
+            console.log(JSON.stringify(ret.data.test_result[0]));
+              $("#content").text(JSON.stringify(ret.data.test_result[0]))
+              $("#content").css("top",api.winHeight*3/4)
+              $("#content").css("left",(api.winWidth-$("#content").width())/2)
+              console.log(JSON.stringify(ret));
+          } else {
+              alert("错误")
+              api.openWin({
+                  name: 'home',
+                  url: './home_win.html',
+                  slidBackEnabled: false,
+                  animation:{
+                    type:"push",
+                    subType:"from_right",
+                    duration:300
+                  }
+              });
+
+              console.log(JSON.stringify(ret));
+          }
+        });
+
+
+}
+</script>
+
+
+
+
+</html>

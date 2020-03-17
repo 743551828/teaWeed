@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css" />
+    <link rel="stylesheet" type="text/css" href="../css/login.css" />
+</head>
+
+<body>
+    <div class="logo">
+        <img src="../image/green-tea.png">
+    </div>
+    <div class="aui">
+
+        <form id="login_form">
+            <ul class="aui-list aui-form-list">
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+
+                        <div class="aui-list-item-input">
+                            <input type="text" name="userName" id="username" placeholder="用户名">
+                        </div>
+                        <div class="aui-list-item-label-icon">
+                            <a href="#">
+                                <img src="../image/pic3.png">
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li class="aui-list-item">
+                    <div class="aui-list-item-inner">
+
+                        <div class="aui-list-item-input">
+                            <input type="password" name="password" id="password" placeholder="密码">
+                        </div>
+                        <div class="aui-list-item-label-icon">
+                            <a href="#">
+                                <img src="../image/pic4.png">
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </form>
+
+        <div class="btn">
+          <button class="login" onclick="login()">
+            登陆
+          </button>
+        </div>
+        <div class="footer">
+            <a id="register" onclick="openRegister()">立即注册</a>
+        </div>
+    </div>
+
+</body>
+<script type="text/javascript" src="../script/jquery.min.js"></script>
+<script type="text/javascript" src="../script/api.js"></script>
+<script type="text/javascript" src="../script/script/ipaddress.js"></script>
+<script type="text/javascript">
+
+  function openRegister(){
+    api.openWin({
+        name: 'register',
+        url: './index.html'
+    });
+
+  }
+  function login(){
+    var username = $("#username").val();
+    var password = $("#password").val();
+    api.showProgress({
+      title: '登录中...',
+      text: '先喝杯茶...',
+      modal: false
+    });
+    $.ajax({
+        url: ipAddress+"login",
+        type: "POST",
+        data: {"userName":username,"password":password},
+        success: function (result) {
+          api.hideProgress();
+          switch(result.code)
+          {
+            case 500:
+              alert(result.msg);
+              break;
+            case 200:
+              $api.setStorage("Authorization",result.data);
+              // console.log($api.getStorage("Authorization"));
+              api.openWin({
+                  name: 'home',
+                  url: './home_win.html',
+                  slidBackEnabled: false,
+                  animation:{
+                    type:"push",
+                    subType:"from_right",
+                    duration:300
+                  }
+              });
+              break;
+          }
+        }
+        ,error: function (XMLHttpRequest, textStatus, errorThrown) {
+            console.log("错误");
+            // 状态码
+            console.log(XMLHttpRequest.status);
+            // 状态
+            console.log(XMLHttpRequest.readyState);
+            // 错误信息
+            console.log(textStatus);
+        }
+      })
+  }
+</script>
+
+</html>
